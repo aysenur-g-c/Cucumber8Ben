@@ -13,13 +13,62 @@ package ApachePOI;
 // Merhaba Dünya 3
 // ...
 
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 public class _09_Soru {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        String path = "src/test/java/ApachePOI/resource/YeniExcel2.xlsx";
 
+        File dosya = new File(path);
         //if dosya yok ise yeni exceli oluştur ve ilk satırı yaz
+        if (!dosya.exists()) // dosya yok ise
+        {
+            //hafızada worbook oluştur
+            XSSFWorkbook workbook = new XSSFWorkbook();
+            XSSFSheet sheet = workbook.createSheet("Sayfa1");
+
+            //değeri set et
+            Row row = sheet.createRow(0); // ilk satır
+            Cell cell = row.createCell(0); // ilk sutun
+            cell.setCellValue("Merhaba Dünya 0");
+
+            //kaydet
+            FileOutputStream outputStream = new FileOutputStream(path);
+            workbook.write(outputStream);
+            workbook.close();
+            outputStream.close();
+            System.out.println("Dosya oluşturuldu ilk satır eklendi.");
+        }
         //else dosya var ise excel in sonuna satır ekle
+        else {  //dosya var ise
+            // var olan dosyanın workbook unu al ve hafızada oluştur
+            FileInputStream inputStream=new FileInputStream(path);
+            Workbook workbook= WorkbookFactory.create(inputStream);
+            Sheet sheet= workbook.getSheetAt(0);
 
+            // en son satır indexini al ve bilgiyi ekle
+            int satirSayisi=sheet.getPhysicalNumberOfRows();
+            Row row=sheet.createRow(satirSayisi); // en son boş satır açıldı
+            Cell cell=row.createCell(0);
+            cell.setCellValue("Merhaba Dünya "+satirSayisi);
 
+            inputStream.close();
+
+            //kaydet
+            FileOutputStream outputStream = new FileOutputStream(path);
+            workbook.write(outputStream);
+            workbook.close();
+            outputStream.close();
+            System.out.println("Dosyaya sıradaki satır eklendi.");
+        }
 
     }
-}
+}    //if dosya yok ise yeni exceli oluştur ve ilk satırı yaz
+//else dosya var ise excel in sonuna satır ekle
