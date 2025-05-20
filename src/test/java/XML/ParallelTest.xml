@@ -10,7 +10,7 @@
     </test>
 
     <test name="test2">
-        <parameter name="BrowserTipi" value="firefox"></parameter>
+        <parameter name="BrowserTipi" value="chrome"></parameter>
 
         <classes>
             <class name="Runners._08_TestRunnerParallel"></class>

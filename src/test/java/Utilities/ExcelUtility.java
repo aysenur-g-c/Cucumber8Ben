@@ -7,6 +7,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class ExcelUtility {
@@ -38,6 +40,8 @@ public class ExcelUtility {
 
     public static void writeToExcel(String path, String senaryoAdi, String testSonuc) {
         File dosya = new File(path);
+        String testDataTime= LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd_MM_YYYY_HH_mm")); //"YYYYMMddhhmmss"
+        System.out.println("testDataTime = " + testDataTime);
 
         try {
             if (!dosya.exists()) {
@@ -49,6 +53,7 @@ public class ExcelUtility {
                 cell1.setCellValue(senaryoAdi);
                 Cell cell2 = row.createCell(1);
                 cell2.setCellValue(testSonuc);
+                Cell cell3= row.createCell(2); cell3.setCellValue(testDataTime);
 
                 FileOutputStream outputStream = new FileOutputStream(path);
                 workbook.write(outputStream);
@@ -65,6 +70,7 @@ public class ExcelUtility {
                 cell1.setCellValue(senaryoAdi);
                 Cell cell2 = row.createCell(1);
                 cell2.setCellValue(testSonuc);
+                Cell cell3= row.createCell(2); cell3.setCellValue(testDataTime);
 
                 inputStream.close();
 
