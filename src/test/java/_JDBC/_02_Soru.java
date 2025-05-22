@@ -18,9 +18,9 @@ public class _02_Soru {
         Statement sorguEkrani= baglanti.createStatement();
         ResultSet sonucTablosuGostergesi=sorguEkrani.executeQuery("select * from city;");
 
-        f
-
-
+        while (sonucTablosuGostergesi.next()){ // sonuç tablosunun sonuna git
+            System.out.println(sonucTablosuGostergesi.getString("city"));
+        }
 
     }
 

@@ -1,15 +1,34 @@
-package Utilities;
+package _JDBC;
 
 import java.sql.*;
 import java.util.ArrayList;
 
-public class DBUtility {
+public class _09_DBUtilitySoru {
     public static Connection baglanti;
     public static Statement sorguEkrani;
 
+    public static void main(String[] args) {
+
+        // gönderilen sorgu sonunda ki tüm detayları bir list olarak döndüren metodu yazınız
+
+        String sorguSql="select * from language";
+
+        ArrayList<ArrayList<String>> donenData=getListData(sorguSql);
+
+        for(ArrayList<String> satir : donenData) {
+            for (String kolonItem : satir)
+                System.out.print(kolonItem + "\t");
+
+            System.out.println();
+        }
+
+    }
+
     public static ArrayList<ArrayList<String>> getListData(String sorgu){
-        ArrayList< ArrayList<String> > donecekTablo=new ArrayList<>();
+        ArrayList<ArrayList<String>> donecekTablo=new ArrayList<>();
         DBConnectionOpen();
+
+        // gelen sorguyu alıp, DB den çalıştırıp, dönecek tabloya atınız.
 
         try {
             ResultSet rs = sorguEkrani.executeQuery(sorgu);
@@ -29,16 +48,13 @@ public class DBUtility {
             System.out.println("ex.getMessage() = " + ex.getMessage());
         }
 
-        DBConnectionClose();
         return  donecekTablo;
     }
 
-
-
-    public static void DBConnectionOpen() {
-        String serverUrl = "jdbc:mysql://demo.mersys.io:33906/sakila";  //port,dbname,mySql
-        String username = "student";
-        String password = "DEkzTd3#pzPm";
+    public static void DBConnectionOpen(){
+        String serverUrl="jdbc:mysql://demo.mersys.io:33906/sakila"; // port, dbname, mySql
+        String username="student";
+        String password= "DEkzTd3#pzPm";
 
         try {
             baglanti = DriverManager.getConnection(serverUrl, username, password);
@@ -55,6 +71,4 @@ public class DBUtility {
             System.out.println("ex.getMessage() = " + ex.getMessage());
         }
     }
-
 }
-

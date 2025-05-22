@@ -9,6 +9,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
+import java.util.List;
+
 public class DialogContent extends ParentPage{
 
     public DialogContent() {
@@ -65,6 +67,9 @@ public class DialogContent extends ParentPage{
 
     @FindBy(xpath = "//ms-integer-field[@formcontrolname='priority']//input")
     public WebElement priorityCode;
+
+    @FindBy(xpath="//tbody//tr//td[2]")
+    public List<WebElement> nameList;
 
 
     public void verifyMessageContainsText(WebElement element, String serchText){
