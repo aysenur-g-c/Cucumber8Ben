@@ -71,6 +71,29 @@ public class DialogContent extends ParentPage{
     @FindBy(xpath="//tbody//tr//td[2]")
     public List<WebElement> nameList;
 
+    //-------------------------------------------------------------
+
+    @FindBy(xpath = "//*[@class='zak-button']")
+    public WebElement demoButton;
+
+    @FindBy(xpath = "(//*[@class='elementor-button-text'])[2]")
+    public WebElement exploreOpenMRS2Button;
+
+    @FindBy(xpath = "(//*[@class='elementor-button-text'])[4]")
+    public WebElement enterExploreOpenMRS2Button;
+
+    @FindBy(xpath = "//*[@id='username']")
+    public WebElement usernameInputField;
+
+    @FindBy(xpath = "//*[@id='password']")
+    public WebElement passwordInputField;
+
+    @FindBy(xpath = "//*[@id='sessionLocation']//li")
+    public WebElement locations;
+
+    @FindBy(xpath = "//*[@id='loginButton']")
+    public WebElement logInButtonnn;
+
 
     public void verifyMessageContainsText(WebElement element, String serchText){
         wait.until(ExpectedConditions.visibilityOf(element));

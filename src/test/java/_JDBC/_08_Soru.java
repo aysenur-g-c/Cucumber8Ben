@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class _08_Soru extends JDBCParent{
     // language tablosundaki tüm satırları ve üstüne kolon isimleri ile yazdırınız,
@@ -28,6 +29,23 @@ public class _08_Soru extends JDBCParent{
 
             System.out.println(); // sonraki satır için satır atlat
         }
+
+//        protected void identifyEmployeesWithHighestAverageSalaryPerDepartment(String query) throws SQLException {
+//            try (Statement st = con.createStatement();
+//                 ResultSet rs = st.executeQuery(query)) {
+//
+//                System.out.printf("%-20s %-20s %-20s %-16s%n", "Department", "First Name", "Last Name", "Average Salary");
+//                System.out.println("------------------------------------------------------------------------");
+//
+//                while (rs.next()) {
+//                    String department = rs.getString("department");
+//                    String firstName = rs.getString("first_name");
+//                    String lastName = rs.getString("last_name");
+//                    double avgSalary = rs.getDouble("avg_salary");
+//                    System.out.printf("%-20s %-20s %-20s %-16.2f%n", department, firstName, lastName, avgSalary);
+//                }
+//            }
+//        }
 
     }
 }
